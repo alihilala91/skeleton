@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+         http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="1762861498388-1" author="Admin">
+        <createSequence incrementBy="1" schemaName="skeleton" sequenceName="department_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1762861498388-2" author="Admin">
+        <createSequence incrementBy="1" schemaName="skeleton" sequenceName="employee_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1762861498388-3" author="Admin">
+        <createTable schemaName="skeleton" tableName="department">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_department"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1762861498388-4" author="Admin">
+        <createTable schemaName="skeleton" tableName="employee">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_employee"/>
+            </column>
+            <column name="employee_no" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1762861498388-5" author="Admin">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="employee" baseTableSchemaName="skeleton"
+                                 constraintName="FK_EMPLOYEE_ON_DEPARTMENT" referencedColumnNames="id"
+                                 referencedTableName="department" referencedTableSchemaName="skeleton"/>
+    </changeSet>
+</databaseChangeLog>

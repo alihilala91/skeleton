@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="snapshotDb" value="false" />
+    <option name="snapshotModelValue" value="skeletonV1:skeletonV1" />
+    <option name="updateDbConnectionName" value="c23456f0-d8c5-4596-bbf0-463622853239" />
+  </component>
+</project>
