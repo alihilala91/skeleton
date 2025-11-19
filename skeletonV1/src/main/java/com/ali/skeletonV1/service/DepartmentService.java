@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 @RequiredArgsConstructor
 public class DepartmentService {
@@ -32,11 +34,20 @@ public class DepartmentService {
      * @param code Code
      * @return Department
      */
-    public Department findByCode(final String code) {
+    public Department findByCode(final String code, Locale locale) {
 
         return departmentRepository.findByCode(code).orElseThrow(() ->
-                new ResourceException(ExceptionKey.DEPARTMENT_NOT_FOUND, HttpStatus.NOT_FOUND)
+                new ResourceException(ExceptionKey.DEPARTMENT_NOT_FOUND, HttpStatus.NOT_FOUND,locale)
         );
 
+    }
+
+
+    /**
+     * This Method Used  for Testing
+     * Delete All Records
+     */
+    public void deleteAll() {
+        departmentRepository.deleteAll();
     }
 }

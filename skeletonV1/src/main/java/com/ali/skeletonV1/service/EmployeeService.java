@@ -6,6 +6,8 @@ import com.ali.skeletonV1.dto.employee.fetch.all.response.AllEmployeeResponse;
 import com.ali.skeletonV1.dto.employee.fetch.singel.response.EmployeeDetails;
 import com.ali.skeletonV1.entity.Department;
 import com.ali.skeletonV1.entity.Employee;
+import com.ali.skeletonV1.entity.EmployeeIdentification;
+import com.ali.skeletonV1.enums.employee.EmployeeStatus;
 import com.ali.skeletonV1.exception.ExceptionKey;
 import com.ali.skeletonV1.exception.ResourceException;
 import com.ali.skeletonV1.repository.EmployeeRepository;
@@ -30,6 +32,7 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final DepartmentService departmentService;
+    private final EmployeeIdentificationService employeeIdentificationService;
 
 
     /**
@@ -59,7 +62,7 @@ public class EmployeeService {
 
         // Fetch Employee Details By Employee Number
         EmployeeDetailsPojo employeeDetailsPojo = employeeRepository.getEmployeeDetails(employeeNo).orElseThrow(() ->
-                new ResourceException(ExceptionKey.EMPLOYEE_NOT_FOUND, HttpStatus.NOT_FOUND));
+                new ResourceException(ExceptionKey.EMPLOYEE_NOT_FOUND, HttpStatus.NOT_FOUND, locale));
 
         // Mapping Response
         return EmployeeDetails.mapping(employeeDetailsPojo);
@@ -80,7 +83,18 @@ public class EmployeeService {
         final Locale locale = Utility.getLocale(request);
 
         // Validate Department Code
-        final Department department = departmentService.findByCode(employeeCreateRequest.getDeptCode());
+        final Department department = departmentService.findByCode(employeeCreateRequest.getDeptCode(), locale);
+
+        // Validate IdentificationType
+        Utility.validateIdentificationType(employeeCreateRequest.getIdentificationType(), locale);
+
+
+        // Validate the Employee Identification
+        if (employeeIdentificationService.isIdentificationExists(employeeCreateRequest.getIdentificationValue(),
+                employeeCreateRequest.getIdentificationType())) {
+            throw new ResourceException(ExceptionKey.EMPLOYEE_IDENTIFICATION_EXISTS, HttpStatus.FOUND, locale);
+        }
+
 
         // Generate Employee Number
         final String employeeNumber = generateEmployeeNumber();
@@ -91,7 +105,17 @@ public class EmployeeService {
                 .lastName(employeeCreateRequest.getLastName().toUpperCase())
                 .department(department)
                 .employeeNo(employeeNumber)
+                .status(EmployeeStatus.ACTIVE.name())
                 .build());
+
+        // Save Employee identifications
+        employeeIdentificationService.save(EmployeeIdentification.builder()
+                .identificationType(employeeCreateRequest.getIdentificationType())
+                .identificationValue(employeeCreateRequest.getIdentificationValue())
+                .status(EmployeeStatus.ACTIVE.name())
+                .employee(employee)
+                .build());
+
 
         // Mapping Response
         return EmployeeCreateResponse.mapping(employee);
@@ -150,5 +174,14 @@ public class EmployeeService {
 
         // Mapping Response
         return AllEmployeeResponse.mapping(allEmployeePojos);
+    }
+
+
+    /**
+     * This Method Used  for Testing
+     * Delete All Records
+     */
+    public void deleteAll() {
+        employeeRepository.deleteAll();
     }
 }

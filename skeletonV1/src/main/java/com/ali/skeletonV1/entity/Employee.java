@@ -49,6 +49,9 @@ public class Employee {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "status")
+    private String status;
+
     @CreationTimestamp
     @Column(name = "creation_Date", nullable = false)
     private LocalDateTime creationDate;

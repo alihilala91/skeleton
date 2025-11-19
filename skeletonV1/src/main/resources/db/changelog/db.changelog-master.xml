@@ -7,9 +7,8 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
     <!-- include other changelogs -->
-    <include file="/db/changelog/001-create-table.xml"/>
-
-
-
+    <include file="/db/changelog/2025/11/department-table.xml"/>
+    <include file="/db/changelog/2025/11/employee-table.xml"/>
+    <include file="/db/changelog/2025/11/employee-identification-table.xml"/>
 
 </databaseChangeLog>

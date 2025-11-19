@@ -36,8 +36,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             " from skeleton.employee emp" +
             "         join skeleton.department d on emp.department_id = d.id" +
             " where (:employeeNo is null or emp.employee_no = :employeeNo)" +
-            "  and (:firstName is null or emp.first_name = :firstName)" +
-            "  and (:lastName is null or emp.last_name = :lastName)" +
+            "  and (:firstName is null or emp.first_name like :firstName%)" +
+            "  and (:lastName is null or emp.last_name like %:lastName)" +
             "  and (:deptCode is null or d.code = :deptCode)", nativeQuery = true)
     Page<AllEmployeePojo> findAllEmployee(@Param("deptCode") String deptCode,
                                           @Param("firstName") String firstName,

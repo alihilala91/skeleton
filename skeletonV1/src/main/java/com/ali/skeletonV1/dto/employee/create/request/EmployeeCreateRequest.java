@@ -24,4 +24,11 @@ public class EmployeeCreateRequest {
 
     @NotNull(message = "EmployeeCreateRequest.deptCode.NotNull")
     private String deptCode;
+
+
+    @NotNull(message = "EmployeeCreateRequest.identificationValue.NotNull")
+    private String identificationValue;
+
+    @NotNull(message = "EmployeeCreateRequest.identificationType.NotNull")
+    private String identificationType;
 }
