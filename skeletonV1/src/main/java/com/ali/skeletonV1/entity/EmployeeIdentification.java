@@ -63,6 +63,5 @@ public class EmployeeIdentification {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    @ToString.Exclude
     private Employee employee;
 }

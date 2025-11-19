@@ -63,7 +63,6 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
-    @ToString.Exclude
     private Department department;
 
 
