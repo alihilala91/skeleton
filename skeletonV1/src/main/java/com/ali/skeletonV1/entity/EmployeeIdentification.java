@@ -41,7 +41,7 @@ public class EmployeeIdentification {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_identification_gen")
     @SequenceGenerator(name = "employee_identification_gen", sequenceName = "employee_identification_seq",
-            allocationSize = 1)
+            allocationSize = 1,schema = "skeleton")
     private Long id;
 
     @Column(name = "identification_value")

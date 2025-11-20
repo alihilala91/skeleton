@@ -31,7 +31,7 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_gen")
-    @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", allocationSize = 1)
+    @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", allocationSize = 1,schema = "skeleton")
     private Long id;
 
 
