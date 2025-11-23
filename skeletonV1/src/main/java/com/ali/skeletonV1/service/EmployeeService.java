@@ -178,6 +178,20 @@ public class EmployeeService {
 
 
     /**
+     * Find Employee By Identification Details
+     *
+     * @param identificationValue identificationValue
+     * @param identificationType  identificationType
+     * @return Employee
+     */
+    public Employee findByIdentificationValueAndType(final String identificationValue, final String identificationType) {
+
+        return employeeRepository.findByIdentificationTypaAndValue(identificationType, identificationValue)
+                .orElseThrow(() -> new ResourceException(ExceptionKey.EMPLOYEE_NOT_FOUND,
+                        HttpStatus.NOT_FOUND, Locale.ENGLISH));
+    }
+
+    /**
      * This Method Used  for Testing
      * Delete All Records
      */

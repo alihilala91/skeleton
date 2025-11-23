@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,20 +27,20 @@ import java.time.LocalDateTime;
 @ToString
 @Builder
 @Entity
-@Table(name = "department",schema = "skeleton")
+@Table(name = "department", schema = "skeleton")
 public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_gen")
-    @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", allocationSize = 1,schema = "skeleton")
+    @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", allocationSize = 1, schema = "skeleton")
     private Long id;
 
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
 
-    @Column(name = "code",nullable = false)
+    @Column(name = "code", nullable = false)
     private String code;
 
 
@@ -50,4 +51,21 @@ public class Department {
     @UpdateTimestamp
     @Column(name = "update_date", nullable = false)
     private LocalDateTime updateDate;
+
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final Department that = (Department) o;
+
+        return Objects.equals(code, that.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, code, creationDate, updateDate);
+    }
 }

@@ -44,4 +44,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
                                           @Param("lastName") String lastName,
                                           @Param("employeeNo") String employeeNo,
                                           Pageable pageable);
+
+
+    @Query(value = "select emp.*" +
+            " from skeleton.employee emp" +
+            "         join skeleton.employee_identification ei on emp.id = ei.employee_id" +
+            " where ei.identification_value = :identificationValue" +
+            "  and ei.identification_type = :identificationTypa", nativeQuery = true)
+    Optional<Employee> findByIdentificationTypaAndValue(@Param("identificationTypa") String identificationTypa,
+                                                        @Param("identificationValue") String identificationValue);
 }

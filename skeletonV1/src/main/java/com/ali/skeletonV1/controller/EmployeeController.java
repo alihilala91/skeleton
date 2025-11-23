@@ -7,6 +7,7 @@ import com.ali.skeletonV1.dto.employee.fetch.all.response.AllEmployeeResponse;
 import com.ali.skeletonV1.dto.employee.fetch.singel.response.EmployeeDetails;
 import com.ali.skeletonV1.service.EmployeeService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class EmployeeController {
      */
     @PostMapping
     public ResponseEntity<EmployeeCreateResponse> create(
-            @RequestBody final EmployeeCreateRequest employeeCreateRequest,
+            @RequestBody @Valid final EmployeeCreateRequest employeeCreateRequest,
             final HttpServletRequest request) {
 
         // Create New Employee
