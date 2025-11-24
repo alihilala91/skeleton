@@ -30,6 +30,9 @@ public class EmployeeCreationTest extends SkeletonV1ApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
 
     /**
      * Test the Happy Case Senior For Create Employee
@@ -42,10 +45,6 @@ public class EmployeeCreationTest extends SkeletonV1ApplicationTests {
         // Delete All Exists User
         employeeIdentificationService.deleteAll();
         employeeService.deleteAll();
-
-        // Initialized for Object Mapper
-        final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // Prepare Create Employee Request
         final EmployeeRequestDTO request = EmployeeRequestDTO.normalFlow();
@@ -98,9 +97,6 @@ public class EmployeeCreationTest extends SkeletonV1ApplicationTests {
         employeeIdentificationService.deleteAll();
         employeeService.deleteAll();
 
-        // Initialized for Object Mapper
-        final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // Prepare Create Employee Request
         final EmployeeRequestDTO request = EmployeeRequestDTO.normalFlow();
@@ -210,9 +206,6 @@ public class EmployeeCreationTest extends SkeletonV1ApplicationTests {
         employeeIdentificationService.deleteAll();
         employeeService.deleteAll();
 
-        // Initialized for Object Mapper
-        final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // Prepare Create Employee Request
         final EmployeeRequestDTO request = EmployeeRequestDTO.normalFlow();
@@ -261,9 +254,6 @@ public class EmployeeCreationTest extends SkeletonV1ApplicationTests {
         employeeIdentificationService.deleteAll();
         employeeService.deleteAll();
 
-        // Initialized for Object Mapper
-        final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // Prepare Create Employee Request
         final EmployeeRequestDTO request = EmployeeRequestDTO.normalFlow();

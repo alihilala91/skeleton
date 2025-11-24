@@ -3,7 +3,6 @@ package com.ali.skeletonV1.seeds;
 
 import com.ali.skeletonV1.dto.employee.create.request.EmployeeCreateRequest;
 import com.ali.skeletonV1.entity.Department;
-import com.ali.skeletonV1.entity.Employee;
 import com.ali.skeletonV1.entity.UserRole;
 import com.ali.skeletonV1.entity.Users;
 import com.ali.skeletonV1.enums.employee.EmployeeIdentificationTypeEnums;
@@ -19,7 +18,6 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.PostLoad;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -38,7 +36,7 @@ public class SeedDate {
 
 
     @PostConstruct
-    public void addDepartments() {
+    public void AddingTestEmployee() {
 
         employeeIdentificationService.deleteAll();
         employeeService.deleteAll();
