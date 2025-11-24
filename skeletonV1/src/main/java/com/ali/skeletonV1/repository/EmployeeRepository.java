@@ -53,4 +53,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "  and ei.identification_type = :identificationTypa", nativeQuery = true)
     Optional<Employee> findByIdentificationTypaAndValue(@Param("identificationTypa") String identificationTypa,
                                                         @Param("identificationValue") String identificationValue);
+
+
+    Employee findTopBy();
 }
