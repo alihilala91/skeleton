@@ -54,7 +54,7 @@ public class AccountLevel {
     private AccountInfo accountInfo;
 
     @ManyToOne
-    @JoinColumn(name = "account_info_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "account_level_type_lookup_id", referencedColumnName = "id", nullable = false)
     private AccountLevelTypeLookup accountLevelType;
 
 
